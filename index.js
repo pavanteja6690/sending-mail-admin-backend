@@ -34,7 +34,7 @@ app.get("/sendmail", (req, res) => {
 app.post("/admin/sendmail", async (req, res) => {
   var html = req.body.msg;
   html2jade.convertHtml(html, {}, async function (err, jade) {
-    await fs.writeFile("./views/email.jade", html, (err) => {
+    fs.writeFile("./views/email.jade", html, (err) => {
       if (err) console.log(err);
       else {
         app.mailer.send(
